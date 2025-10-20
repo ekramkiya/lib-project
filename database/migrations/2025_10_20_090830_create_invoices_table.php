@@ -10,15 +10,15 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('invoices', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->integer('age')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('contact')->nullable();
-            $table->text('address')->nullable();
+            $table->foreignId('test_order_id')->constrained()->cascadeOnDelete();
+            $table->decimal('total_amount', 10, 2);
+            $table->decimal('paid_amount', 10, 2)->default(0);
+            $table->string('status')->default('unpaid'); // paid, partial, unpaid
             $table->timestamps();
         });
+
     }
 
     /**
@@ -26,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('invoices');
     }
 };

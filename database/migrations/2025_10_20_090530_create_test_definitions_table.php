@@ -10,13 +10,13 @@ return new class extends Migration {
      */
     public function up(): void
     {
-        Schema::create('patients', function (Blueprint $table) {
+        Schema::create('test_definitions', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->integer('age')->nullable();
-            $table->string('gender')->nullable();
-            $table->string('contact')->nullable();
-            $table->text('address')->nullable();
+            $table->string('category')->nullable(); // e.g. Blood, Urine
+            $table->decimal('price', 10, 2);
+            $table->string('unit')->nullable();
+            $table->string('reference_range')->nullable();
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('patients');
+        Schema::dropIfExists('test_definitions');
     }
 };
