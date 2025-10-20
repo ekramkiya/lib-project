@@ -31,6 +31,9 @@ class UsersTable
                     ->dateTime()
                     ->sortable()
                     ->toggleable(isToggledHiddenByDefault: true),
+                    textColumn::make('roles.name')
+                    ->label('Roles')
+                    ->sortable()
             ])
             ->filters([
                 //
