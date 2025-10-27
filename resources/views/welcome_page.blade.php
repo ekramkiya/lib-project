@@ -28,10 +28,20 @@
         </p>
 
         <!-- Login Button -->
-        <a href="{{ route('filament.admin.auth.login') ?? url('/admin/login') }}"
-           class="inline-block px-8 py-3 bg-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:bg-indigo-700 hover:shadow-indigo-400 transition duration-300 ease-in-out">
-            Login
-        </a>
+
+        @if(auth()->check())
+    <a href="{{  url('/admin') }}" 
+       class="inline-block px-8 py-3 bg-green-600 text-white font-semibold rounded-xl shadow-lg hover:bg-green-700 hover:shadow-green-400 transition duration-300 ease-in-out">
+        Dashboard
+    </a>
+@else
+    <a href="{{ route('filament.admin.auth.login') ?? url('/admin/login') }}"
+       class="inline-block px-8 py-3 bg-indigo-600 text-white font-semibold rounded-xl shadow-lg hover:bg-indigo-700 hover:shadow-indigo-400 transition duration-300 ease-in-out">
+        Login
+    </a>
+@endif
+
+
     </div>
 
 </body>

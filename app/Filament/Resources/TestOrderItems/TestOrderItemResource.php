@@ -13,11 +13,13 @@ use Filament\Resources\Resource;
 use Filament\Schemas\Schema;
 use Filament\Support\Icons\Heroicon;
 use Filament\Tables\Table;
+use UnitEnum;
 
 class TestOrderItemResource extends Resource
 {
     protected static ?string $model = TestOrderItem::class;
 
+    protected static UnitEnum|string|null $navigationGroup = 'Tests';  
 protected static string|BackedEnum|null $navigationIcon = Heroicon::OutlinedListBullet;
 
     public static function form(Schema $schema): Schema
