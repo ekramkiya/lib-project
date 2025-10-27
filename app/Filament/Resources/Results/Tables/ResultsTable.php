@@ -2,6 +2,7 @@
 
 namespace App\Filament\Resources\Results\Tables;
 
+use Filament\Actions\Action;
 use Filament\Actions\BulkActionGroup;
 use Filament\Actions\DeleteAction;
 use Filament\Actions\DeleteBulkAction;
@@ -29,6 +30,13 @@ class ResultsTable
             ->recordActions([
                 EditAction::make(),
                 DeleteAction::make(),
+                Action::make('print')
+                    ->label('Print')
+                    ->icon('heroicon-o-printer')
+                    ->color('primary')
+                    ->url(fn($record) => route('results.print', $record)) 
+                    ->openUrlInNewTab(), // optional: open in new tab
+
             ])
             ->toolbarActions([
                 BulkActionGroup::make([

@@ -6,6 +6,7 @@ use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Filament\Schemas\Schema;
+use App\Models\TestOrderItem;
 
 class ResultForm
 {
@@ -13,16 +14,20 @@ class ResultForm
     {
         return $schema
             ->components([
-               Select::make('test_order_item_id')
-                    ->relationship('orderItem.testDefinition', 'name')
+                Select::make('test_order_item_id')
                     ->label('Test')
+                    ->options(function () {
+                        return TestOrderItem::with('testDefinition')
+                            ->get()
+                            ->pluck('testDefinition.name', 'id'); // display test name
+                    })
+                    ->searchable()
                     ->required(),
+
                 TextInput::make('result_value')->required(),
-               TextInput::make('unit'),
+                TextInput::make('unit'),
                 TextInput::make('reference_range')->label('Reference Range'),
-              Toggle::make('is_abnormal')->label('Abnormal?'),
-
-
+                Toggle::make('is_abnormal')->label('Abnormal?'),
             ]);
     }
 }
